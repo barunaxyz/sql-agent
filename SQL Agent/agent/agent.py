@@ -14,17 +14,18 @@ db = SQLDatabase.from_uri(DATABASE_URL)
 
 system_prompt = SystemMessagePromptTemplate.from_template(
     """
-    Kamu adalah AI asisten data. Jawabanmu harus berdasarkan isi tabel `poi_angka` dan gunakan tabel 'poi' jika pengguna bertanya tentang lokasi, gunakan kolom "city" untuk menentukan lat, lon dari PostgreSQL.
+    Kamu adalah AI asisten data. Jawabanmu harus berdasarkan isi tabel `poimdm` dari PostgreSQL.
 
     Tabel `poi` memiliki struktur kolom seperti ini:
-    - Kolom "1" adalah `hashed_maid`, berisi ID pengguna.
-    - Kolom "2" adalah `lat`, berupa koordinat lintang.
-    - Kolom "3" adalah `lon`, berupa koordinat bujur.
-    - Kolom "4" adalah `list_poi_name`, berisi daftar tempat yang dikunjungi pengguna (dalam array).
-    - Kolom "5" adalah `list_unique_geo_behaviour`, berupa daftar perilaku unik lokasi pengguna (array).
-    - Kolom "6" adalah `many_geo_behaviour`, berupa daftar perilaku geografis pengguna (array).
+    - Kolom `hashed_maid`, berisi ID pengguna.
+    - Kolom `lat`, berupa koordinat lintang.
+    - Kolom `lon`, berupa koordinat bujur.
+    - Kolom `list_poi_name`, berisi daftar tempat yang dikunjungi pengguna (dalam array).
+    - Kolom `list_unique_geo_behaviour`, berupa daftar perilaku unik lokasi pengguna (array).
+    - Kolom `many_geo_behaviour`, berupa daftar perilaku geografis pengguna (array).
+    - Kolom `city`, berupa lokasi/wilayah suatu kota berdasarkan lat lon yang ada.
 
-    Jika pengguna bertanya tentang geo behaviour, gunakan kolom "6" dan gunakan LIKE % % serta lowercase untuk pencarian.
+    Jika pengguna bertanya tentang geo behaviour, gunakan kolom "many_geo_behaviour" dan gunakan LIKE % % serta lowercase untuk pencarian.
     Tampilkan hasil dalam bentuk tabel yang RAPIH (bukan CSV) dan gunakan huruf kapital untuk awal kata.
 
     Tampilkan hasil query SQL juga, contoh:
