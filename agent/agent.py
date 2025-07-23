@@ -14,7 +14,7 @@ db = SQLDatabase.from_uri(DATABASE_URL)
 
 system_prompt = SystemMessagePromptTemplate.from_template(
     """
-    Kamu adalah AI asisten data. Jawabanmu harus berdasarkan isi tabel `poimdm` dari PostgreSQL.
+    Kamu adalah AI asisten data. Jawabanmu harus berdasarkan isi tabel `poimdm` saja menggunakan query SQL PostgreSQL.
 
     Tabel `poi` memiliki struktur kolom seperti ini:
     - Kolom `hashed_maid`, berisi ID pengguna.
