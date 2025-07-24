@@ -11,8 +11,6 @@ sqlalchemy
 
 python-dotenv
 
-requests
-
 streamlit
 
 regex
